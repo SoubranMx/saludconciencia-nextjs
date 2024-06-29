@@ -1,3 +1,35 @@
 {
-  "extends": "next/core-web-vitals"
+  "extends": ["next/core-web-vitals", "prettier"],
+  "rules": {
+    "no-var": "warn",
+    "no-use-before-define": [
+      "warn",
+      { "functions": false, "classes": true, "variables": true }
+    ],
+    "no-nested-ternary": "warn"
+  },
+  "overrides": [
+    {
+      "extends": [
+        "next/core-web-vitals",
+        "prettier",
+        "plugin:@typescript-eslint/recommended"
+      ],
+      "plugins": ["react-hooks"],
+      "files": ["*.ts", "*.tsx"],
+      "rules": {
+        "eqeqeq": "warn",
+        "react-hooks/exhaustive-deps": "error",
+        "@typescript-eslint/no-explicit-any": "error",
+        "@typescript-eslint/no-restricted-imports": [
+          "error",
+          {
+            "name": "react-i18next",
+            "importNames": ["useTranslation"],
+            "message": "When using NextJS, the correct import should be from 'next-i18next'"
+          }
+        ]
+      }
+    }
+  ]
 }
